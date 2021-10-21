@@ -951,6 +951,11 @@
     "global-agent" "^2.0.2"
     "global-tunnel-ng" "^2.7.1"
 
+"@electron/remote@^2.0.1":
+  "integrity" "sha512-bGX4/yB2bPZwXm1DsxgoABgH0Cz7oFtXJgkerB8VrStYdTyvhGAULzNLRn9rVmeAuC3VUDXaXpZIlZAZHpsLIA=="
+  "resolved" "https://registry.npmjs.org/@electron/remote/-/remote-2.0.1.tgz"
+  "version" "2.0.1"
+
 "@malept/cross-spawn-promise@^1.1.0":
   "integrity" "sha512-RTBGWL5FWQcg9orDOCcp4LvItNzUPcyEU9bwaeJX0rJ1IQxzucC48Y0/sQLp/g6t99IQgAlGIaesJS+gTn7tVQ=="
   "resolved" "https://registry.npmjs.org/@malept/cross-spawn-promise/-/cross-spawn-promise-1.1.1.tgz"
@@ -2314,7 +2319,7 @@
   optionalDependencies:
     "@bitdisaster/exe-icon-extractor" "^1.0.10"
 
-"electron@^13.1.9":
+"electron@^13.1.9", "electron@>= 10.0.0-beta.1":
   "integrity" "sha512-By4Zb72XNQLrPb70BXdIW3NtEHFwybP5DIQjohnCxOYONq5vojuHjNcTuWnBgMvwQ2qwykk6Tw5EwF2Pt0CWjA=="
   "resolved" "https://registry.npmjs.org/electron/-/electron-13.1.9.tgz"
   "version" "13.1.9"

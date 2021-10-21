@@ -2,14 +2,14 @@
 
 // Import parts of electron to use
 const { app, BrowserWindow, ipcMain } = require("electron");
+const EventEmitter = require("events");
 const path = require("path");
 const url = require("url");
 // const os = require("os");
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
-
+EventEmitter.defaultMaxListeners = 20;
 // Keep a reference for dev mode
 let dev = false;
 
@@ -115,10 +115,29 @@ app.on("activate", () => {
 });
 
 // workspace channel
-ipcMain.on("workspace", (event, arg) => {
+ipcMain.on("workspace:on", (event, arg) => {
   const { dialog } = require("electron");
+  ipcMain.on("workspace:recent-get", (event, arg) => {
+    // event.reply("recent-works", "recent workspaces test");
+    const workspaces = [
+      {
+        name: "HAHAA1",
+        path: "C/wdawda/cwdawd1",
+      },
+      {
+        name: "HAHAA2",
+        path: "C/wdawda/cwdawd2",
+      },
+      {
+        name: "HAHAA3",
+        path: "C/wdawda/cwdawd3",
+      },
+    ];
+    event.reply("workspace:recent-post", workspaces);
+  });
+  // mainWindow.reload();
   // read incoming ipc renderer
-  ipcMain.on("open-workspace", (event, arg) => {
+  ipcMain.on("workspace:open", (event, arg) => {
     // const username = undefined;
     let options = {
       // title label
@@ -145,12 +164,9 @@ ipcMain.on("workspace", (event, arg) => {
     if (arg === true) {
       dialog.showOpenDialog(options).then((res) => {
         console.warn("result", res.filePaths);
-        event.reply("resultPath", res.filePaths);
+        // app.addRecentDocument(res.filePaths);
+        event.reply("workspace:folder-path", res.filePaths);
       });
     }
   });
-
-  function readFile(path) {
-    event.reply("workspace-path", path);
-  }
 });
